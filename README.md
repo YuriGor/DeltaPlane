@@ -3,6 +3,10 @@ Proxy to keep original data unchanged,
 but read and write changes using additional layer - 'delta' object.
 
 ```
+npm install deltaplane
+```
+
+```js
 var o = { a:{b:{c:'original'}}, hello: 'world'};
 var dp = new DeltaPlane(o);
 var p = dp.getPlane();
