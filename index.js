@@ -50,28 +50,25 @@ export default class DeltaPlane {
     // if(parent===undefined){
     //   parent = this
     // }
-    return new Proxy(
-      { original: me.original, delta: me.delta },
-      {
-        get: function (state, prop) {
-          const p = [...path, prop];
+    return new Proxy(me.delta, {
+      get: function (delta, prop) {
+        const p = [...path, prop];
 
-          let val = get(state.delta, p);
-          if (val === undefined) {
-            val = get(state.original, p);
-          }
+        let val = get(delta, p);
+        if (val === undefined) {
+          val = get(me.original, p);
+        }
 
-          if (!isObject(val)) {
-            return val;
-          }
+        if (!isObject(val)) {
+          return val;
+        }
 
-          return me.getPlane(p);
-        },
-        set: function (state, prop, val) {
-          set(state.delta, [...path, prop], val);
-        },
-      }
-    );
+        return me.getPlane(p);
+      },
+      set: function (delta, prop, val) {
+        set(delta, [...path, prop], val);
+      },
+    });
   }
 
   getDelta() {
