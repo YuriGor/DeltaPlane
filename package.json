@@ -1,6 +1,6 @@
 {
   "name": "deltaplane",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Proxy to keep original data read-only, but read and write changes using separate 'delta' object.",
   "main": "index.js",
   "scripts": {
