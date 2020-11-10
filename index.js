@@ -68,6 +68,14 @@ export default class DeltaPlane {
       set: function (delta, prop, val) {
         set(delta, [...path, prop], val);
       },
+      ownKeys: function (delta) {
+        return [
+          ...Object.getOwnPropertyNames(delta),
+          ...Object.getOwnPropertyNames(me.original),
+          ...Object.getOwnPropertySymbols(delta),
+          ...Object.getOwnPropertySymbols(me.original),
+        ].filter((v, i, a) => a.indexOf(v) === i);
+      },
     });
   }
 
