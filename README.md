@@ -9,7 +9,7 @@ npm install deltaplane
 ```js
 var o = { a:{b:{c:'original'}}, hello: 'world'};
 
-var dp = new DeltaPlane(o);
+var dp = DeltaPlane(o);
 var p = dp.getPlane();
 // if not changed then read from original
 console.log(p.a.b.c); // 'original'
@@ -25,7 +25,7 @@ console.log(dp.getDelta()); // { a:{b:{c:1}}};
 console.log(o);// original object is still safe.
 // use existing deltas
 var delta = {hello:"hi"};
-dp = new DeltaPlane(o, delta);
+dp = DeltaPlane(o, delta);
 p = dp.getPlane();
 console.log(p.hello);
 console.log(p.a.b.c);
